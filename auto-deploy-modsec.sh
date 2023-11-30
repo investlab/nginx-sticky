@@ -53,7 +53,7 @@ server {
         error_log       /var/log/nginx/sub.domain.com_error.log;
 
         sub_filter http://sub.domain.com https://sub.domain.com;
-		sub_filter http://www.domain.com https://www.domain.com;
+	sub_filter http://www.domain.com https://www.domain.com;
         sub_filter_once off;
         include /etc/nginx/general.conf;
 
@@ -65,8 +65,8 @@ server {
              proxy_pass         http://clusterapp;
              include /etc/nginx/proxy.conf;
              }
-		#Browser cache
-		location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
+	#Browser cache
+	location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
              proxy_pass       http://10.0.0.8:8080;
              include /etc/nginx/proxy.conf;
              expires 30d;
