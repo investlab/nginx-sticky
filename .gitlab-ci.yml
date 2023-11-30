@@ -6,7 +6,9 @@ before_script:
   - export IMAGE="hub.docker.io/wisoez/nginx-sticky:$CI_COMMIT_TAG"
   - echo $IMAGE
   - sudo docker login hub.docker.io -u $USER -p $PASS
-
+  - |
+    sudo echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
+    sudo systemctl restart docker.service
 forbuilddocker:
   stage: builddocker
   only:
