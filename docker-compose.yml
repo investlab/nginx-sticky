@@ -3,7 +3,7 @@ version: '2'
 services:
    nginx-sticky:
      container_name: nginx-sticky
-     image: "hub.saobang.vn/nexttech/nginx-modsecurity-crs:1.25.3-alpine"
+     image: "wisoez/nginx-sticky:1.25.3-alpine"
      volumes:
        - "./nginx/conf.d:/etc/nginx/conf.d"
        - "./nginx/log:/var/log/nginx"
