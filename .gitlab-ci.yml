@@ -1,0 +1,27 @@
+stages:
+  - builddocker
+  - dockerpush
+
+before_script:
+  - export IMAGE="hub.docker.io/wisoez/nginx-sticky:$CI_COMMIT_TAG"
+  - echo $IMAGE
+  - sudo docker login hub.docker.io -u $USER -p $PASS
+
+forbuilddocker:
+  stage: builddocker
+  only:
+    - tags
+  tags:
+    - runner-8.198
+  script:
+    - sudo docker build --squash -t $IMAGE .
+
+fordockerpush:
+  stage: dockerpush
+  only:
+    - tags
+  tags:
+    - runner-8.198
+  script:
+    - sudo docker push nginx-sticky:$CI_COMMIT_TAG
+    - sudo docker rmi $IMAGE

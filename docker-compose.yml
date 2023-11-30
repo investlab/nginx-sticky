@@ -1,0 +1,17 @@
+version: '2'
+  
+services:
+   nginx-sticky:
+     container_name: nginx-sticky
+     image: "hub.saobang.vn/nexttech/nginx-modsecurity-crs:1.25.3-alpine"
+     volumes:
+       - "./nginx/conf.d:/etc/nginx/conf.d"
+       - "./nginx/log:/var/log/nginx"
+       - "./errors:/usr/share/nginx/errors"
+       - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+       - "./nginx/general.conf:/etc/nginx/general.conf"
+       - "./nginx/proxy.conf:/etc/nginx/proxy.conf"
+     restart: "always"
+     ports:
+       - "80:80"
+       - "443:443"
