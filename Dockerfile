@@ -76,18 +76,18 @@ WORKDIR /opt
 RUN rm -fr /etc/nginx/conf.d/ && \
     rm -fr /etc/nginx/nginx.conf
 
-COPY conf/nginx/ /etc/nginx/
-COPY errors /usr/share/nginx/errors
-ADD  ./conf/nginx/general.conf	/etc/nginx/
-ADD  ./conf/nginx/proxy.conf	/etc/nginx/
+COPY ./nginx/ 			/etc/nginx/
+COPY ./nginx/errors 		/usr/share/nginx/errors
+ADD  ./nginx/general.conf	/etc/nginx/
+ADD  ./nginx/proxy.conf		/etc/nginx/
 
 # Edit link de download
 # https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=YOUR_LICENSE_KEY&suffix=tar.gz
 # https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=YOUR_LICENSE_KEY&suffix=tar.gz
 # https://forum.matomo.org/t/maxmind-is-changing-access-to-free-geolite2-databases/35439/3
 
-COPY ./GeoLite2-City.tar.gz /tmp/
-COPY ./GeoLite2-Country.tar.gz /tmp/
+COPY ./build/GeoLite2-City.tar.gz /tmp/
+COPY ./build/GeoLite2-Country.tar.gz /tmp/
 RUN mkdir -p /etc/nginx/geoip && \
     tar -xvzf /tmp/GeoLite2-City.tar.gz --strip-components=1 && \
     tar -xvzf /tmp/GeoLite2-Country.tar.gz --strip-components=1 && \
