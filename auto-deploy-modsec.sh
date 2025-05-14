@@ -56,6 +56,8 @@ server {
 	sub_filter http://www.domain.com https://www.domain.com;
         sub_filter_once off;
         include /etc/nginx/general.conf;
+        include /etc/nginx/conf.d/include/block-exploits.conf;
+
 
 #    	ssl_certificate /etc/nginx/ssl/www.doamin.com/www.domain.com.crt;
 #	ssl_certificate_key /etc/nginx/ssl/www.doamin.com/www.doamin.com.pri.key;
